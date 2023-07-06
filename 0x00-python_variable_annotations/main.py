@@ -1,3 +1,3 @@
-safe_first_element =  __import__('100-safe_first_element').safe_first_element
+element_length =  __import__('9-element_length').element_length
 
-print(safe_first_element.__annotations__)
+print(element_length.__annotations__)
