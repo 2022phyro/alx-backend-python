@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Measuring the runtime of our await functions"""
 import time
 

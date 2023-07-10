@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Introduction into async functions"""
 from random import uniform
 import asyncio
