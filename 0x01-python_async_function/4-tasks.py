@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """Running a task"""
 import asyncio
-from typing import List, Awaitable, Callable, Any
+from typing import List
 
-task_wait_random: Callable[[int], float] = __import__(
-                                                  '3-tasks'
-).wait_random
+task_wait_random = __import__('3-tasks').task_wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
