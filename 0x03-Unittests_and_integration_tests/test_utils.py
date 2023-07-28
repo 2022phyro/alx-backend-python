@@ -119,6 +119,10 @@ class TestMemoize(TestCase):
             x = v.a_property
             mock_method.assert_called_once()
 
+@parameterized_class("org_payload", "repos_payload",
+                     "expected_repos", "apache2_repos")
+class TestIntegrationGithubOrgClient(TestCase):
+    
 
 if __name__ == '__main__':
     main()

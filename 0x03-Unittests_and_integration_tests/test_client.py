@@ -70,6 +70,7 @@ class TestGithubOrgClient(TestCase):
             mock_get (Mock): our mock object for controlling the tests
         """
         mock_get.return_value = res
+
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock) as url:
             url.return_value = url
