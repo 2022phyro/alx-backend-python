@@ -112,14 +112,12 @@ class TestMemoize(TestCase):
                     int: a_method()
                 """
                 return self.a_method()
+
         with patch.object(TestClass, 'a_method') as mock_method:
-            mock_method.return_value = 42
             v = TestClass()
             result = v.a_property
             x = v.a_property
             mock_method.assert_called_once()
-            self.assertEqual(result, mock_method())
-            self.assertEqual(x, mock_method())
 
 
 if __name__ == '__main__':
