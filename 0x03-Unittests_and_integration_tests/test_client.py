@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Testing the GithubOrg file client.py"""
 from unittest import TestCase, main
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, PropertyMock
 from parameterized import parameterized_class, parameterized
 from typing import Mapping, Sequence, Any, Dict, List
 from client import GithubOrgClient, get_json
@@ -36,13 +36,13 @@ class TestGithubOrgClient(TestCase):
         mock_get.assert_called_once()
         self.assertEqual(x, mock_get())
         self.assertEqual(y, mock_get())
-        pass
 
     def test_public_repos_url(self) -> None:
         """tests the _public_repos_url property
         """
-        with patch('client.GithubOrgClient._public_repos_url') as url:
-            url.__get__ = Mock(return_value='https://github/google.com')
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as url:
+            url.return_value = 'https://github/google.com'
             inst = GithubOrgClient('google')
             self.assertEqual(inst._public_repos_url,
                              "https://github/google.com")
@@ -70,8 +70,9 @@ class TestGithubOrgClient(TestCase):
             mock_get (Mock): our mock object for controlling the tests
         """
         mock_get.return_value = res
-        with patch('client.GithubOrgClient._public_repos_url') as url:
-            url.__get__ = Mock(return_value=url)
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as url:
+            url.return_value = url
             inst = GithubOrgClient(name)
             x = inst.public_repos()
             y = inst.public_repos()
